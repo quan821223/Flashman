@@ -1,0 +1,198 @@
+﻿<Window x:Class="ISP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ISP"
+        mc:Ignorable="d"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        Title="Flashman" Height="480" Width="520" Loaded="Window_Loaded" Closed="Window_Closed" Closing="Window_Closing" >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <!--<Menu x:Name="ItemMenu" Grid.Column="0"  HorizontalAlignment="Left" Margin="0 2 0 0" Background="White">
+            <Menu.Resources>
+                <Style x:Key="MenuItemstyle" TargetType="MenuItem">
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="Background" Value="#FFD6D6D6"/>
+                </Style>
+            </Menu.Resources>
+            <MenuItem x:Name="FileMenuItem" Header="文件(F)" Style="{StaticResource MenuItemstyle}" Background="White" >
+                
+                <MenuItem x:Name="PathofLogItem" Header="log資料夾的位置" Click="PathofLogItem_Click" 
+                              />
+            </MenuItem>
+        </Menu>-->
+        <DockPanel  Grid.Row="1" >
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  Width="1*" />
+                                <ColumnDefinition  Width="1*" />
+                                <ColumnDefinition  Width="1*" />
+                                <ColumnDefinition  Width="1*" />
+                                <ColumnDefinition  Width="1*" />
+                                <ColumnDefinition  Width="1*" />
+                                <ColumnDefinition  Width="2*" />
+                                <ColumnDefinition  Width="2*" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem  Grid.Column="0"  Background="White">
+                    <Grid>
+                        <Label Content="Ver. " Foreground="Black" Background="White"/>
+                    </Grid>
+                </StatusBarItem>
+                <StatusBarItem  Grid.Column="1" Cursor="">
+                    <Grid>
+                        <TextBlock Name="sbi_text" Text="{Binding SWversion}" Foreground="Black" />
+                    </Grid>
+                </StatusBarItem>
+                <StatusBarItem  Grid.Column="2">
+                    <Label Content="port : "/>
+                </StatusBarItem>
+                <StatusBarItem  Grid.Column="3">
+                    <Grid>
+                        <TextBlock Name="tbk_port"  Foreground="Black" />
+                    </Grid>
+                </StatusBarItem>
+                <StatusBarItem  Grid.Column="4">
+                    <Label Content="verigy : " />
+                </StatusBarItem>
+                <StatusBarItem  Grid.Column="5">
+                    <Grid>
+                        <TextBlock Name="tbk_configconnect"  Foreground="Black" />
+                    </Grid>
+                </StatusBarItem>
+                <StatusBarItem  Grid.Column="6"  Background="#FF4CD800">
+                    <Grid>
+                        <Label Content="Device : " Foreground="White" FontWeight="Bold"/>
+                    </Grid>
+                 
+                </StatusBarItem>
+                <StatusBarItem  Grid.Column="7" FontWeight="Bold">
+                    <Grid>                        
+                        <TextBlock Name="tbk_debug" 
+                                   Text="{Binding IsConnecttoDevice, UpdateSourceTrigger=PropertyChanged}"     
+                                   Foreground="#FFFF9800"  />
+                    </Grid>
+                </StatusBarItem>
+            </StatusBar>
+            <Grid Margin="8 5 8 0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.3*"/>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+                 
+                    <Grid Grid.Column="2">
+                        <Image Source="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/AU-Optronics-Logo.svg/220px-AU-Optronics-Logo.svg.png"/>
+                    </Grid>
+                 
+                </Grid>
+             
+                <Grid  x:Name="GridPrincipal" Grid.Row="1"  />
+
+                <Grid Grid.Row="3" IsEnabled="{Binding IsNormalMode}" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <ui:ProgressRing Grid.Column="0" 
+                                     IsIndeterminate="True" 
+                                     Height="30" Width="30"/>
+                    <ui:ProgressRing Grid.Column="1"
+                                     IsIndeterminate="True"
+                                     Height="30" 
+                                     Width="30"/>
+                    <ui:ProgressRing Grid.Column="2"
+                                     IsIndeterminate="True" 
+                                     Height="30" 
+                                     Width="30"/>
+              
+                    <ui:Button Grid.Column = "0" 
+                               x:Name="bt_setdevice"
+                               IsEnabled="{Binding IsNormalMode}"
+                               Content="1.Set" 
+                               ToolTip="Open file" 
+                               Cursor="Hand"  
+                               FontFamily="Bahnschrift SemiCondensed"                      
+                               Appearance="Primary"
+                               Icon="Settings48" 
+                               VerticalAlignment="Stretch" 
+                               HorizontalAlignment="Stretch"
+                               FontSize="16" Background="#FFD2E9FD"
+                               Command="{Binding bt_setting}" Click="bt_setdevice_Click">
+                        <ui:Button.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,3" MappingMode="Absolute">
+                                <GradientStop Color="#18FFFFFF" Offset="0.33"/>
+                                <GradientStop Color="#FFE4F1FD" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ui:Button.BorderBrush>
+                    </ui:Button>
+                    <ui:Button Grid.Column = "1" 
+                               x:Name="bt_params"
+                               IsEnabled="{Binding IsNormalMode}"
+                               Content="2.Option" 
+                               ToolTip="set program parameters" 
+                               Cursor="Hand"  
+                               FontFamily="Bahnschrift SemiCondensed"                          
+                               Appearance="Primary"
+                               Icon="Settings48" 
+                               VerticalAlignment="Stretch" 
+                               HorizontalAlignment="Stretch"
+                               FontSize="16" Background="#FFA6D4FB" Click="bt_params_Click"/>
+                    <ui:Button Grid.Column = "2" 
+                               x:Name="bt_binfile"
+                               Command="{Binding bt_Binfileshow}"
+                               IsEnabled="{Binding IsNormalMode}"
+                               Content="3.Bin" 
+                               ToolTip="set program parameters" 
+                               Cursor="Hand"  
+                               FontFamily="Bahnschrift SemiCondensed"                       
+                               Appearance="Primary"
+                               Icon="SlideText20" 
+                               VerticalAlignment="Stretch" 
+                               HorizontalAlignment="Stretch"
+                               FontSize="16" Background="#FF6BB6F7"
+                               Click="bt_binfile_Click"/>
+                    <ui:Button Grid.Column = "3" 
+                               IsEnabled="{Binding IsunLockProgram}"
+                               Command="{Binding bt_Program}"
+                               x:Name="bt_program"
+                               Content="4.Program" 
+                               ToolTip="set program parameters" 
+                               Cursor="Hand"  
+                               FontFamily="Bahnschrift SemiCondensed"                     
+                               Appearance="Caution"
+                               Icon="Play48" 
+                               VerticalAlignment="Stretch" 
+                               HorizontalAlignment="Stretch"
+                               FontSize="16" FontWeight="Bold" 
+                               Click="bt_program_Click"/>
+
+                </Grid>
+
+            </Grid>
+
+        </DockPanel>
+
+    </Grid>
+</Window>

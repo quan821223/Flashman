@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="ISP.View.ProgrammingPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ISP.View"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid Grid.Row="0">
+            <GroupBox Header="configure your parameters"
+                      Margin="5 " 
+                      FontSize="14" 
+                      FontWeight="Bold" FontFamily="Consolas">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="interface" Grid.Row="0" Grid.Column="0" 
+                           Foreground="#FF535353" 
+                           FontWeight="Bold" FontFamily="Champagne &amp;amp; Limousines" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Content="Architecture" Grid.Row="0" Grid.Column="2" 
+                           Foreground="#FF535353" VerticalAlignment="Center" 
+                           FontWeight="Bold" FontFamily="Champagne &amp;amp; Limousines" HorizontalAlignment="Center"/>
+                        <Label Content="address" Grid.Row="1" Grid.Column="0" 
+                           Foreground="#FF535353" VerticalAlignment="Center" 
+                           FontWeight="Bold" FontFamily="Champagne &amp;amp; Limousines" HorizontalAlignment="Center"/>
+                        <Label Content="timeout" Grid.Row="1" Grid.Column="2" 
+                           Foreground="#FF535353" VerticalAlignment="Center" 
+                           FontWeight="Bold" FontFamily="Champagne &amp;amp; Limousines" HorizontalAlignment="Center"/>
+
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <TextBox x:Name="tb_interface"     
+                                     Text="{Binding tb_Interface, UpdateSourceTrigger=PropertyChanged}"                              
+                                     IsReadOnly="True"  
+                                     Background="#FFE8E8E8" 
+                                     Foreground="Black" />
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="3">
+                            <TextBox x:Name="tb_device"  
+                                     Text="{Binding tb_device, UpdateSourceTrigger=PropertyChanged}"
+                                     IsReadOnly="True"
+                                     Background="#FFE8E8E8" 
+                                     Foreground="Black" />
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="1">
+                            <TextBox x:Name="tb_address"  
+                                     Text="{Binding tb_address, UpdateSourceTrigger=PropertyChanged}"
+                                     Background="#FFD2E9FD"
+                                     Foreground="Black" Cursor="IBeam" />
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="3">
+                            <TextBox x:Name="tb_timeout" 
+                                     Text="{Binding tb_timeout, UpdateSourceTrigger=PropertyChanged}"
+                                     Background="#FFD2E9FD"
+                                     Foreground="Black" />
+                        </Grid>
+
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="0 0 0 20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="address"
+                               Grid.Row="0"
+                               Foreground="#FF535353" 
+                               VerticalAlignment="Center" 
+                               FontWeight="Bold"
+                               FontFamily="Champagne &amp;amp; Limousines"
+                               HorizontalAlignment="Center"/>
+                        <TextBox x:Name="tx_binPath" Grid.Row="1" 
+                                 Text="{Binding tb_binpath, UpdateSourceTrigger=PropertyChanged}"
+                                 Foreground="Black"         
+                                 TextWrapping="Wrap" 
+                                 AllowDrop="True" 
+                                 FontFamily="Consolas"
+                                 HorizontalScrollBarVisibility="Visible"
+                                 VerticalScrollBarVisibility="Visible"
+                                 IsReadOnly="True" Background="#FFE8E8E8" VerticalAlignment="Stretch" Cursor="IBeam"   >
+                        </TextBox>
+                    </Grid>
+
+
+
+                </Grid>
+
+            </GroupBox>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

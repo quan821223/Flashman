@@ -1,0 +1,249 @@
+﻿<UserControl x:Class="ISP.View.SetComPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Interactivity="clr-namespace:Reactive.Bindings.Interactivity;assembly=ReactiveProperty.WPF"
+             xmlns:local="clr-namespace:ISP.View"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White"  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2.5*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <GroupBox Header="Serial port setting" 
+                      Margin="5 " 
+                      FontSize="14" 
+                      FontWeight="Bold" 
+                      FontFamily="Consolas">
+                <Grid    >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="62"/>
+                    </Grid.RowDefinitions>
+                 
+                    <!--<Label Grid.Row="0" Grid.Column="2" Content="Parity:" Margin="0 0 0 0" Foreground="Black" VerticalAlignment="Center" FontWeight="Normal" FontFamily="Champagne &amp;amp; Limousines" HorizontalAlignment="Center"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="BaudRate:" Margin="0 0 0 0" Foreground="Black" VerticalAlignment="Center" FontWeight="Normal" FontFamily="Champagne &amp;amp; Limousines" HorizontalAlignment="Center"/>
+                        <Label Grid.Row="1" Grid.Column="2" Content="DataBits:" Margin="0 0 0 0" Foreground="Black" VerticalAlignment="Center" FontWeight="Normal" FontFamily="Champagne &amp;amp; Limousines" HorizontalAlignment="Center"/>-->
+
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <WrapPanel Orientation="Horizontal">
+                            <Label Grid.Row="0" Grid.Column="0" Content="Port:" Margin="0 0 0 0" Foreground="Black" VerticalAlignment="Center" FontWeight="Normal" FontFamily="Champagne &amp;amp; Limousines" HorizontalAlignment="Center"/>
+                            <ComboBox x:Name="cb_CommPorts" 
+                                  ToolTip="Select Port"
+                                  SelectedValuePath="ComDeviceID"
+                                  DisplayMemberPath="ComDeviceID" 
+                                  ItemsSource="{Binding cb_Ports}"
+                                  IsEnabled="{Binding IsNormalMode}"
+                                  SelectedItem="{Binding SelectedPort, Mode=TwoWay}"
+                                  IsSynchronizedWithCurrentItem="True" 
+                                  FontWeight="Normal"               
+                                  Foreground="Black" Background="#FFA4D4FF" />
+                            <ui:Button Grid.Column = "1" Margin="0 7 7 7" MaxWidth="47"
+                                   IsEnabled="{Binding IsNormalMode}"
+                                   Command="{Binding bt_research}"
+                                   MaxHeight="42"
+                                   ToolTip="Select bin file" 
+                                   Cursor="Hand"  
+                                   FontFamily="Consolas" 
+                                   Appearance="Primary"
+                                   Icon="ZoomIn24" 
+                                   VerticalAlignment="Stretch" 
+                                   FontSize="22" Background="#FFA4D4FF" />
+                        </WrapPanel>
+    
+                    </Grid>
+                    <Grid Grid.Row="0" Grid.Column="2">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Swtich Mode"  FontSize="12" VerticalAlignment="Center"/>
+                            <ui:Button Grid.Column = "1" Margin="3" 
+                                   IsEnabled="{Binding IsNormalMode}"
+                                   Command="{Binding bt_SwitchDeviceMode}"
+                                   Height="32"
+                                   ToolTip="Switch Device mode" 
+                                   Cursor="Hand"  
+                                   FontFamily="Consolas" 
+                                   Appearance="Primary"
+                                   Icon="TableSwitch16" 
+                                   VerticalAlignment="Stretch" 
+                                   FontSize="22" Background="#FFA4D4FF" />
+                        </StackPanel>
+                    </Grid>
+                 
+                    <!--<Grid Grid.Row="0" Grid.Column="3" Margin="3">
+                            <ComboBox x:Name="cb_Parity" ItemsSource="{Binding }"
+                                      DisplayMemberPath="BaudRateValue" 
+                                      IsEnabled="{Binding ComPortVM.IsEnableComA}" MinWidth="50" FontSize="12" 
+                                      SelectedValue="{Binding ComPortVM.SelectedComA_BaudRate, Mode=TwoWay}" SelectedValuePath="BaudRateValue"/>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="1" Margin="3">
+                            <ComboBox x:Name="cb_BaudRate" ItemsSource="{Binding ComPortVM.Parities}" DisplayMemberPath="ParityName"                                           
+                                      IsEnabled="{Binding ComPortVM.IsEnableComA}" MinWidth="50" FontSize="12"
+                                      IsReadOnly="True" SelectedValue="{Binding ComPortVM.SelectedComA_Parity, Mode=TwoWay}" SelectedValuePath="ParityValue"/>
+
+                        </Grid>
+                     
+                        <Grid Grid.Row="1" Grid.Column="3" Margin="3">
+                            <ComboBox ItemsSource="{Binding ComPortVM.DataBits}" DisplayMemberPath="DataBitsValue"
+                                      IsEnabled="{Binding ComPortVM.IsEnableComA}" MinWidth="27" FontSize="12"                                        
+                                      SelectedValue="{Binding ComPortVM.SelectedComA_DataBits, Mode=TwoWay}" SelectedValuePath="DataBitsValue"/>
+
+                        </Grid>-->
+
+                </Grid>
+
+            </GroupBox>
+
+        </Grid>
+        <Grid Grid.Row="1"  Margin="8">
+            <GroupBox Header="Bin file setup"  FontSize="14" FontWeight="Bold">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Device:" Margin="0 0 0 0" Foreground="#FF535353" VerticalAlignment="Center" FontWeight="Normal" FontFamily="Champagne &amp;amp; Limousines" HorizontalAlignment="Center"/>
+
+                        <Grid Grid.Column="1" >
+                            <ComboBox x:Name="cb_devices"
+                                      ItemsSource="{Binding cb_devices}"
+                                      ToolTip="Select device type"
+                                      IsEnabled="{Binding IsNormalMode}"
+                                      SelectedValue="0"
+                                      SelectedItem="{Binding Selectdeivcecase, Mode=TwoWay}"
+                                      MinWidth="50" 
+                                      IsSynchronizedWithCurrentItem="True" 
+                                      FontWeight="Normal" FontFamily="Consolas" 
+                                      Foreground="Black" Background="#FFA4D4FF" />
+
+                        </Grid>
+
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Label Content="please select the path for the bin file :"
+                                   Margin="0" Foreground="#FF535353"
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold" 
+                                   FontFamily="Champagne &amp;amp; Limousines"
+                               
+                                   HorizontalAlignment="Center" FontSize="16"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2" x:Name="gb" AllowDrop="True" Margin="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0"
+                                BorderThickness="1"
+                                BorderBrush="Gray"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"                                     
+                                AllowDrop="True">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Drop">
+                                    <Interactivity:EventToReactiveCommand Command="{Binding FileDropCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="AliceBlue"/>
+                                    <Style.Triggers>
+                                        <EventTrigger RoutedEvent="DragEnter">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" 
+                                                        Duration="0:0:0.200" To="PowderBlue" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="DragLeave">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" 
+                                                        Duration="0:0:0" To="AliceBlue" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="Drop">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" 
+                                                        Duration="0:0:0" To="AliceBlue" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ScrollViewer>
+                                <TextBlock x:Name="tx_binPath"
+                                           VerticalAlignment="Stretch"
+                                           HorizontalAlignment="Stretch"
+                                           Margin="5"
+                                           Text="{Binding DropFile.Value}"
+                                           TextWrapping="Wrap"
+                                           Foreground="DimGray"
+                                           FontFamily="Consolas"
+                                            ToolTip="The path of bin file"
+                                       
+                                           />
+                            </ScrollViewer>
+                    
+                        </Border>
+
+                        <!--<TextBlock Grid.Column="0" x:Name="tx_binPath"
+                                   Text="{Binding tb_binpath, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="5"
+                                   TextWrapping="Wrap"  
+                                   ToolTip="The path of bin file"
+                                   AllowDrop="True"                                  
+                                   FontFamily="Consolas" 
+                                   ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                                   ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                   Background="#FFFFF0D6" />-->
+                        <ui:Button Grid.Column = "1" Margin="7 3 0 3" 
+                                   IsEnabled="{Binding IsNormalMode}"
+                                   Command="{Binding bt_OpenFile}"
+                                   x:Name="bt_LoadBINfile"
+                                   ToolTip="Select bin file" 
+                                   Cursor="Hand"  
+                                   FontFamily="Consolas" 
+                                   Appearance="Primary"
+                                   Icon="FolderAdd24" 
+                                   VerticalAlignment="Stretch" 
+                                   FontSize="28" Background="#FFA4D4FF" />
+
+                    </Grid>
+
+                </Grid>
+
+            </GroupBox>
+
+        </Grid>
+    </Grid>
+</UserControl>

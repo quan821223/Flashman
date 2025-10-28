@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="ISP.View.BinWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ISP.View"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <Grid Grid.Row="1">
+        <!-- switch page-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Margin="0 0 0 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <GroupBox Header="bin file" 
+                                  Margin="5 5 5 5" 
+                                  FontSize="14"
+                                  FontWeight="Bold" 
+                                  FontFamily="Consolas" BorderBrush="#FFE4F1FD">
+                        <Grid  Margin="3"
+                                    HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch" 
+                               >
+                            <TextBox x:Name="tbx_bincontain" 
+                                     Text="{Binding tb_showbin, UpdateSourceTrigger=PropertyChanged}"  
+                                     FontFamily="Consolas"
+                                     Foreground="#FF27EC00"  
+                                     Background="#FF717171"
+                                     
+                                     CaretBrush="#FFFFB635" 
+                                     SelectionBrush="#FF00EDFF"
+                                          HorizontalScrollBarVisibility="Visible"
+                                 VerticalScrollBarVisibility="Visible"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch" 
+                                     IsReadOnly="True"/>
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content=" CRC :" Foreground="#87000000" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                    <TextBox x:Name="tbx_crc"
+                             Text="{Binding tb_crc, UpdateSourceTrigger=PropertyChanged}"                             
+                             Grid.Column="1"
+                             CaretBrush="#FF80B9EE"
+                             Foreground="Black" 
+                             IsReadOnly="True"
+                             Background="#FFE8E8E8" Height="30"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="0">
+                <GroupBox Header="Program list ..." 
+                                      Margin="5 5 5 5"
+                                      FontSize="14" 
+                                      FontWeight="Bold" 
+                                      FontFamily="Consolas">
+                    <Grid  Grid.Row="0" >
+                       
+                        <ProgressBar  x:Name="programbarnumber" 
+                                              Height="30"
+                                         HorizontalAlignment="Stretch" 
+                                         VerticalAlignment="Stretch"  
+                                         Value="{Binding iSPapp.programbarnumber}"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+                        <TextBlock   Text="{Binding iSPapp.programbarnumber, StringFormat={}{0:0}%}" 
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center" />
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+        
+
+
+    </Grid>
+</UserControl>

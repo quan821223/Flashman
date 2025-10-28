@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ReactiveProperty.WPF</name>
+    </assembly>
+    <members>
+        <member name="T:Reactive.Bindings.Schedulers.ReactivePropertyWpfScheduler">
+            <summary>
+            A scheduler for ReactiveProperty and ReactiveCollection on WPF.
+            </summary>
+        </member>
+        <member name="P:Reactive.Bindings.Schedulers.ReactivePropertyWpfScheduler.Now">
+            <summary>
+            Gets the scheduler's notion of current time.
+            </summary>
+        </member>
+        <member name="M:Reactive.Bindings.Schedulers.ReactivePropertyWpfScheduler.#ctor(System.Windows.Threading.Dispatcher)">
+            <summary>
+            Construct a scheduler from Dispatcher.
+            </summary>
+            <param name="dispatcher">An application's dispatcher</param>
+        </member>
+        <member name="M:Reactive.Bindings.Schedulers.ReactivePropertyWpfScheduler.Schedule``1(``0,System.Func{System.Reactive.Concurrency.IScheduler,``0,System.IDisposable})">
+            <summary>
+            Schedules an action to be executed.
+            </summary>
+            <typeparam name="TState">The type of the state passed to the scheduled action.</typeparam>
+            <param name="state">State passed to the action to be executed.</param>
+            <param name="action">Action to be executed.</param>
+            <returns>The disposable object used to cancel the scheduled action (best effort).</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="action"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Reactive.Bindings.Schedulers.ReactivePropertyWpfScheduler.Schedule``1(``0,System.TimeSpan,System.Func{System.Reactive.Concurrency.IScheduler,``0,System.IDisposable})">
+            <summary>
+            Schedules an action to be executed after dueTime.
+            </summary>
+            <typeparam name="TState">The type of the state passed to the scheduled action.</typeparam>
+            <param name="state">State passed to the action to be executed.</param>
+            <param name="action">Action to be executed.</param>
+            <param name="dueTime">Relative time after which to execute the action.</param>
+            <returns>The disposable object used to cancel the scheduled action (best effort).</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="action"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Reactive.Bindings.Schedulers.ReactivePropertyWpfScheduler.Schedule``1(``0,System.DateTimeOffset,System.Func{System.Reactive.Concurrency.IScheduler,``0,System.IDisposable})">
+            <summary>
+            Schedules an action to be executed at dueTime.
+            </summary>
+            <typeparam name="TState">The type of the state passed to the scheduled action.</typeparam>
+            <param name="state">State passed to the action to be executed.</param>
+            <param name="action">Action to be executed.</param>
+            <param name="dueTime">Absolute time at which to execute the action.</param>
+            <returns>The disposable object used to cancel the scheduled action (best effort).</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="action"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:Reactive.Bindings.Extensions.DependencyObjectExtensions">
+            <summary>
+            DependencyObject extension methods.
+            </summary>
+        </member>
+        <member name="M:Reactive.Bindings.Extensions.DependencyObjectExtensions.ObserveDependencyProperty``1(``0,System.Windows.DependencyProperty)">
+            <summary>
+            Observe DependencyProperty
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="self"></param>
+            <param name="dp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Reactive.Bindings.Extensions.DependencyObjectExtensions.ToReadOnlyReactiveProperty``1(System.Windows.DependencyObject,System.Windows.DependencyProperty,Reactive.Bindings.ReactivePropertyMode,System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Create ReadOnlyReactiveProperty from DependencyObject
+            </summary>
+        </member>
+        <member name="M:Reactive.Bindings.Extensions.DependencyObjectExtensions.ToReactiveProperty``1(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Reactive.Concurrency.IScheduler,Reactive.Bindings.ReactivePropertyMode)">
+            <summary>
+            Create ReactiveProperty from DependencyObject
+            </summary>
+        </member>
+        <member name="T:Reactive.Bindings.Interactivity.EventToReactiveCommand">
+            <summary>
+            Converts EventArgs to object
+            </summary>
+        </member>
+        <member name="P:Reactive.Bindings.Interactivity.EventToReactiveCommand.Command">
+            <summary>
+            Gets or sets the command.
+            </summary>
+            <value>The command.</value>
+        </member>
+        <member name="F:Reactive.Bindings.Interactivity.EventToReactiveCommand.CommandProperty">
+            <summary>
+            The command property
+            </summary>
+        </member>
+        <member name="P:Reactive.Bindings.Interactivity.EventToReactiveCommand.AutoEnable">
+            <summary>
+            Gets or sets whether or not AssociatedObject.IsEnabled automatically follow the Command's CanExecute.
+            </summary>
+        </member>
+        <member name="F:Reactive.Bindings.Interactivity.EventToReactiveCommand.AutoEnableProperty">
+            <summary>
+            The AutoEnable Property
+            </summary>
+        </member>
+        <member name="P:Reactive.Bindings.Interactivity.EventToReactiveCommand.CallExecuteOnScheduler">
+            <summary>
+            Gets or sets calling or not ICommand.Execute method on IScheduler that is set to ReactivePropertyScheduler.Default.
+            </summary>
+        </member>
+        <member name="F:Reactive.Bindings.Interactivity.EventToReactiveCommand.CallExecuteOnSchedulerProperty">
+            <summary>
+            The CallExecuteOnSchedulere Property
+            </summary>
+        </member>
+        <member name="P:Reactive.Bindings.Interactivity.EventToReactiveCommand.IgnoreEventArgs">
+            <summary>
+            Ignore EventArgs. If value is false then uses Unit.Default.
+            </summary>
+        </member>
+        <member name="P:Reactive.Bindings.Interactivity.EventToReactiveCommand.Converters">
+            <summary>
+            set and get Value converter.
+            </summary>
+        </member>
+        <member name="M:Reactive.Bindings.Interactivity.EventToReactiveCommand.OnAttached">
+            <summary>
+            Called when [attached].
+            </summary>
+        </member>
+        <member name="M:Reactive.Bindings.Interactivity.EventToReactiveCommand.OnDetaching">
+            <summary>
+            Called when [detaching].
+            </summary>
+        </member>
+        <member name="M:Reactive.Bindings.Interactivity.EventToReactiveCommand.Invoke(System.Object)">
+            <summary>
+            Invokes the specified parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+        </member>
+        <member name="T:Reactive.Bindings.Interactivity.EventToReactiveProperty">
+            <summary>
+            Converts EventArgs to object
+            </summary>
+        </member>
+        <member name="P:Reactive.Bindings.Interactivity.EventToReactiveProperty.ReactiveProperty">
+            <summary>
+            Gets or sets the reactive property.
+            </summary>
+            <value>The reactive property.</value>
+        </member>
+        <member name="F:Reactive.Bindings.Interactivity.EventToReactiveProperty.ReactivePropertyProperty">
+            <summary>
+            The reactive property property
+            </summary>
+        </member>
+        <member name="P:Reactive.Bindings.Interactivity.EventToReactiveProperty.IgnoreEventArgs">
+            <summary>
+            Ignore EventArgs. If value is false then uses Unit.Default.
+            </summary>
+        </member>
+        <member name="P:Reactive.Bindings.Interactivity.EventToReactiveProperty.Converters">
+            <summary>
+            set and get Value converter.
+            </summary>
+        </member>
+        <member name="M:Reactive.Bindings.Interactivity.EventToReactiveProperty.OnDetaching">
+            <summary>
+            Called when [detaching].
+            </summary>
+        </member>
+        <member name="M:Reactive.Bindings.Interactivity.EventToReactiveProperty.Invoke(System.Object)">
+            <summary>
+            Invokes the specified parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+        </member>
+        <member name="T:Reactive.Bindings.ObjectExtensions.ObserveEveryValueChangedExtensions">
+            <summary>
+            ObserveEveryValueChanged extension method
+            </summary>
+        </member>
+        <member name="M:Reactive.Bindings.ObjectExtensions.ObserveEveryValueChangedExtensions.ObserveEveryValueChanged``2(``0,System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Publish target property when value is changed. If source is destructed, publish OnCompleted.
+            </summary>
+        </member>
+    </members>
+</doc>
